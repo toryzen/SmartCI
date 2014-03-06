@@ -40,7 +40,7 @@ class Node extends CI_Controller {
 					$sql = "INSERT INTO rbac_node (`dirc`,`cont`,`func`,`status`,`memo`) values('{$dirc}','{$cont}','{$func}','{$status}','{$memo}')";
 					//echo $sql;die();
 					$this->db->query($sql);
-					success_redirct('manage/Node/index','节点添加成功！');
+					success_redirct('manage/node/index','节点添加成功！');
 				}else{
 					error_redirct('',"该节点已存在！");
 				}
@@ -52,7 +52,7 @@ class Node extends CI_Controller {
 	}
 	
 	public function delete($dirc=NULL,$cont=NULL,$func=NULL){
-		if($dirc==NULL){error_redirct("manage/Node/index","操作失败");}
+		if($dirc==NULL){error_redirct("manage/node/index","操作失败");}
 		if($this->input->post()){
 			$verfiy = $this->input->post("verfiy");
 			if($verfiy){
@@ -65,9 +65,9 @@ class Node extends CI_Controller {
 				$this->db->query($sql);
 				$sql = "DELETE FROM rbac_node WHERE {$where_dirc} {$where_cont} {$where_func} ";
 				$this->db->query($sql);
-				success_redirct("manage/Node/index","删除成功");
+				success_redirct("manage/node/index","删除成功");
 			}else{
-				error_redirct("manage/Node/index","操作失败");
+				error_redirct("manage/node/index","操作失败");
 			}
 		
 		}
@@ -84,14 +84,14 @@ class Node extends CI_Controller {
 				if($memo){
 					$sql = "UPDATE rbac_node set `memo`='{$memo}',`status` = '{$status}' WHERE id = {$id}";
 					$this->db->query($sql);
-					success_redirct("manage/Node/index","节点修改成功");
+					success_redirct("manage/node/index","节点修改成功");
 				}else{
 					error_redirct('',"信息填写不全！");
 				}
 			}
 			$this->load->view("manage/node/edit",array('data'=>$data));
 		}else{
-			error_redirct("manage/Node/index","未找到此节点");
+			error_redirct("manage/node/index","未找到此节点");
 		}
 	}
 

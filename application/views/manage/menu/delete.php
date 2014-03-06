@@ -44,5 +44,5 @@ foreach($menu as $mn){
 <form method="POST" action="">
 	<input type="hidden" name="verfiy" value="1" >
 	<input class="btn btn-success"  type="submit" value="确定删除">
-	<a class="btn btn-danger" href="<?php echo site_url('manage/Menu/index'); ?>">取消修改</a>
+	<a class="btn btn-danger" href="<?php echo site_url('manage/menu/index'); ?>">取消修改</a>
 </form>

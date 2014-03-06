@@ -11,5 +11,5 @@
   </div>
   <input type="hidden" name="id" value="<?php echo $data['id'];?>">
   <button type="submit" class="btn btn-success">确认修改</button>
-  <a class="btn btn-danger" href="<?php echo site_url('manage/Role/index'); ?>">取消修改</a>
+  <a class="btn btn-danger" href="<?php echo site_url('manage/role/index'); ?>">取消修改</a>
 </form>

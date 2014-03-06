@@ -31,11 +31,11 @@ class Menu extends CI_Controller {
 				$sql = "DELETE FROM rbac_menu WHERE id in (".$menu_data["id_list"].") ";
 				//echo $sql;die();
 				$this->db->query($sql);
-				success_redirct("manage/Menu/index","菜单删除成功");
+				success_redirct("manage/menu/index","菜单删除成功");
 			}
 			$this->load->view("manage/menu/delete",$menu_data);
 		}else{
-			error_redirct("manage/Menu/index","未找到此菜单");
+			error_redirct("manage/menu/index","未找到此菜单");
 		}
 	}
 	/*
@@ -55,7 +55,7 @@ class Menu extends CI_Controller {
 						$status = $this->input->post("status")==""?"0":"1";
 						$sql = "INSERT INTO rbac_menu (`status`,`title`,`sort`,`node_id`,`p_id`) values( '{$status}','{$title}','{$sort}','{$node}',{$p_id})";
 						$this->db->query($sql);
-						success_redirct("manage/Menu/index","新增菜单成功！");
+						success_redirct("manage/menu/index","新增菜单成功！");
 					//}else{
 					//	error_redirct("","三级菜单必须挂接节点！");
 					//}
@@ -81,7 +81,7 @@ class Menu extends CI_Controller {
 			//print_r($node_data);
 			$this->load->view("manage/menu/add",array("node"=>$node_data,"level"=>$level,"p_id"=>$p_id));
 		//}else{
-			//error_redirct("manage/Menu/index","未找到此节点");
+			//error_redirct("manage/menu/index","未找到此节点");
 		//}
 	
 	}
@@ -103,7 +103,7 @@ class Menu extends CI_Controller {
 						$status = $this->input->post("status")==""?"status='0'":"status='1'";
 						$sql = "UPDATE rbac_menu SET {$status},title='{$title}',sort='{$sort}',node_id='{$node}',{$p_id} WHERE id = '{$id}'";
 						$this->db->query($sql);
-						success_redirct("manage/Menu/index","菜单修改成功！");
+						success_redirct("manage/menu/index","菜单修改成功！");
 					//}else{
 					//	error_redirct("","三级菜单必须挂接节点！");
 					//}
@@ -129,7 +129,7 @@ class Menu extends CI_Controller {
 			//print_r($node_data);
 			$this->load->view("manage/menu/edit",array("data"=>$data,"node"=>$node_data,"level"=>$level,"p_id"=>$p_id));
 		}else{
-			error_redirct("manage/Menu/index","未找到此菜单");
+			error_redirct("manage/menu/index","未找到此菜单");
 		}
 	}
 	

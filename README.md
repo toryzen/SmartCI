@@ -71,7 +71,7 @@ public function aoto_verify(){
                         die();
                     }
                     //ACL重新赋权
-                    $ci_obj->rbac_model->get_acl($_SESSION[$ci_obj->config->item('rbac_auth_key')]["INFO"]["id"]);
+                    $ci_obj->rbac_model->get_acl($_SESSION[$ci_obj->config->item('rbac_auth_key')]["INFO"]["role_id"]);
                 }
                 //验证ACL权限
                 if(@!$_SESSION[$ci_obj->config->item('rbac_auth_key')]["ACL"][$directory][$controller][$function]){

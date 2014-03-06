@@ -14,5 +14,5 @@
 <form method="POST" action="">
 	<input type="hidden" name="verfiy" value="1" >
 	<input class="btn btn-success"  type="submit" value="确定删除">
-	<a class="btn btn-danger" href="<?php echo site_url('manage/Node/index'); ?>">取消操作</a>
+	<a class="btn btn-danger" href="<?php echo site_url('manage/node/index'); ?>">取消操作</a>
 </form>

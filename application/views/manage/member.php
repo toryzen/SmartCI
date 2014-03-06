@@ -30,12 +30,12 @@
 						  <a class="btn btn-danger" href="%s">删除</a>
 						</div>
 					</td>
-				</tr>',$mb->id,$mb->username,$mb->nickname,$mb->email,($mb->rolename?$mb->rolename:"暂无角色"),($mb->status==1?"正常":"停用"),site_url("manage/Member/edit/".$mb->id),site_url("manage/Member/delete/".$mb->id));
+				</tr>',$mb->id,$mb->username,$mb->nickname,$mb->email,($mb->rolename?$mb->rolename:"暂无角色"),($mb->status==1?"正常":"停用"),site_url("manage/member/edit/".$mb->id),site_url("manage/member/delete/".$mb->id));
 	}
 	?>
   </tbody>
 </table>
 <hr/>
 
-<?php echo '<a class="btn btn-success pull-right" href="'.site_url("manage/Member/add").'">新增用户</a>'; ?>
+<?php echo '<a class="btn btn-success pull-right" href="'.site_url("manage/member/add").'">新增用户</a>'; ?>
 <?php echo $this->pagination->create_links(); ?>

@@ -16,7 +16,7 @@ class Member extends CI_Controller {
 		$cnt_data = $query->row_array();
 		//分页
 		$this->load->library('pagination');
-		$config['base_url'] = site_url("manage/Member/index");
+		$config['base_url'] = site_url("manage/member/index");
 		$config['total_rows'] = $cnt_data['cnt'];
 		$config['per_page']   = 35;
 		$config['uri_segment']= '4';
@@ -54,7 +54,7 @@ class Member extends CI_Controller {
 							$sql = "UPDATE rbac_user set `nickname`='{$nickname}',`email`='{$email}' {$newpass} {$newstat} {$newrole} WHERE id = {$id}";
 							//echo $sql;die();
 							$this->db->query($sql);
-							success_redirct("manage/Member/index","用户信息修改成功！");
+							success_redirct("manage/member/index","用户信息修改成功！");
 						}else{
 							error_redirct("","信息填写不全！");
 						}
@@ -67,7 +67,7 @@ class Member extends CI_Controller {
 			}
 			$this->load->view("manage/member/edit",array("data"=>$data,"role_data"=>$role_data));
 		}else{
-			error_redirct("manage/Member/index","未找到此用户");
+			error_redirct("manage/member/index","未找到此用户");
 		}
 	}
 	/**
@@ -97,7 +97,7 @@ class Member extends CI_Controller {
 							$sql = "INSERT INTO rbac_user (`username`,`nickname`,`email`,`password`,`role_id`,`status`) values('{$username}','{$nickname}','{$email}' ,'{$password2}','{$role}', '{$status}')";
 							//echo $sql;die();
 							$this->db->query($sql);
-							success_redirct("manage/Member/index","用户新增成功！");
+							success_redirct("manage/member/index","用户新增成功！");
 						}else{
 							error_redirct("","该Email已存在！");
 						}
@@ -112,7 +112,7 @@ class Member extends CI_Controller {
 				error_redirct("","新密码两次输入验证不符！");
 			}
 		}
-		$this->load->view("manage/Member/add",array("role_data"=>$role_data));
+		$this->load->view("manage/member/add",array("role_data"=>$role_data));
 	}
 	/**
 	 * 人员删除
@@ -127,15 +127,15 @@ class Member extends CI_Controller {
 				if($verfiy){
 					$sql = "DELETE FROM rbac_user WHERE id = ".$id." ";
 					$this->db->query($sql);
-					success_redirct("manage/Member/index","用户删除成功");
+					success_redirct("manage/member/index","用户删除成功");
 				}else{
-					error_redirct("manage/Member/index","操作失败");
+					error_redirct("manage/member/index","操作失败");
 				}
 				
 			}
 			$this->load->view("manage/member/delete",array("data"=>$data));
 		}else{
-			error_redirct("manage/Member/index","未找到此用户");
+			error_redirct("manage/member/index","未找到此用户");
 		}
 	}
 

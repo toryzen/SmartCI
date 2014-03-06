@@ -13,7 +13,7 @@ class Role extends CI_Controller {
 		$cnt_data = $query->row_array();
 		//分页
 		$this->load->library('pagination');
-		$config['base_url'] = site_url("manage/Role/index");
+		$config['base_url'] = site_url("manage/role/index");
 		$config['total_rows'] = $cnt_data['cnt'];
 		$config['per_page']   = 35;
 		$config['uri_segment']= '4';
@@ -39,14 +39,14 @@ class Role extends CI_Controller {
 				if($rolename){
 					$sql = "UPDATE rbac_role set `rolename`='{$rolename}',`status`='{$status}' WHERE id = {$id}";
 					$this->db->query($sql);
-					success_redirct("manage/Role/index","角色信息修改成功！");
+					success_redirct("manage/role/index","角色信息修改成功！");
 				}else{
 					error_redirct("","信息填写不全！");
 				}
 			}
 			$this->load->view("manage/role/edit",array("data"=>$data));
 		}else{
-			error_redirct("manage/Role/index","未找到此角色");
+			error_redirct("manage/role/index","未找到此角色");
 		}
 	}
 	
@@ -64,7 +64,7 @@ class Role extends CI_Controller {
 				if(!$data){
 					$sql = "INSERT INTO rbac_role (`rolename`,`status`) values('{$rolename}','{$status}')";
 					$this->db->query($sql);
-					success_redirct("manage/Role/index","角色新增成功！");
+					success_redirct("manage/role/index","角色新增成功！");
 				}else{
 					error_redirct("","此角色名已存在！");
 				}
@@ -91,15 +91,15 @@ class Role extends CI_Controller {
 					$this->db->query($sql);
 					$sql = "DELETE FROM `rbac_auth` WHERE role_id = ".$id." ";
 					$this->db->query($sql);
-					success_redirct("manage/Role/index","角色删除成功");
+					success_redirct("manage/role/index","角色删除成功");
 				}else{
-					error_redirct("manage/Role/index","操作失败");
+					error_redirct("manage/role/index","操作失败");
 				}
 	
 			}
-			$this->load->view("manage/Role/delete",array("data"=>$data));
+			$this->load->view("manage/role/delete",array("data"=>$data));
 		}else{
-			error_redirct("manage/Role/index","未找到此角色");
+			error_redirct("manage/role/index","未找到此角色");
 		}
 	}
 	
@@ -108,7 +108,7 @@ class Role extends CI_Controller {
 	 * @param number $id
 	 */
 	public function action($id,$node_id=NULL){
-		if(!$id){error_redirct("manage/Role/index","未找到此角色");}
+		if(!$id){error_redirct("manage/role/index","未找到此角色");}
 		if($node_id!=NULL){
 			$query = $this->db->query("SELECT node_id FROM rbac_auth WHERE node_id= {$node_id} AND role_id={$id}");
 			$data = $query->row_array();

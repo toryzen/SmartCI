@@ -13,9 +13,9 @@ foreach($menu as $mn){
 		  	<td>'.$mn["self"]->sort.'</td>
 		  	<td>'.($mn["self"]->status==1?"显示":"隐藏").'</td>
 		  	<td><div class="btn-group  btn-group-xs pull-right">
-				  <a class="btn btn-default" href="'.site_url("manage/Menu/edit/".$mn["self"]->id."/1/NULL").'">修改</a>
-				  <a class="btn btn-danger" href="'.site_url("manage/Menu/delete/".$mn["self"]->id).'">删除</a>
-				  <a class="btn btn-success" href="'.site_url("manage/Menu/add/".$mn["self"]->id."/1/".$mn["self"]->id).'">新增子菜单</a>
+				  <a class="btn btn-default" href="'.site_url("manage/menu/edit/".$mn["self"]->id."/1/NULL").'">修改</a>
+				  <a class="btn btn-danger" href="'.site_url("manage/menu/delete/".$mn["self"]->id).'">删除</a>
+				  <a class="btn btn-success" href="'.site_url("manage/menu/add/".$mn["self"]->id."/1/".$mn["self"]->id).'">新增子菜单</a>
 				</div>
 			</td>
 		  </tr>';
@@ -27,9 +27,9 @@ foreach($menu as $mn){
 			  	<td>'.$cmn["self"]->sort.'</td>
 			  	<td>'.($cmn["self"]->status==1?"显示":"隐藏").'</td>
 			  	<td><div class="btn-group  btn-group-xs pull-right">
-					  <a class="btn btn-default" href="'.site_url("manage/Menu/edit/".$cmn["self"]->id."/2/".$mn["self"]->id).'">修改</a>
-					  <a class="btn btn-danger" href="'.site_url("manage/Menu/delete/".$cmn["self"]->id).'">删除</a>
-					  <a class="btn btn-success" href="'.site_url("manage/Menu/add/".$cmn["self"]->id."/2/".$cmn["self"]->id).'">新增子菜单</a>
+					  <a class="btn btn-default" href="'.site_url("manage/menu/edit/".$cmn["self"]->id."/2/".$mn["self"]->id).'">修改</a>
+					  <a class="btn btn-danger" href="'.site_url("manage/menu/delete/".$cmn["self"]->id).'">删除</a>
+					  <a class="btn btn-success" href="'.site_url("manage/menu/add/".$cmn["self"]->id."/2/".$cmn["self"]->id).'">新增子菜单</a>
 					</div>
 				</td>
 			  </tr>';
@@ -44,8 +44,8 @@ foreach($menu as $mn){
 			  				<td>'.$gcmn["self"]->sort.'</td>
 						  	<td>'.($gcmn["self"]->status==1?"显示":"隐藏").'</td>
 						  	<td><div class="btn-group  btn-group-xs pull-right">
-								  <a class="btn btn-default" href="'.site_url("manage/Menu/edit/".$gcmn["self"]->id."/3/".$cmn["self"]->id).'">修改</a>
-								  <a class="btn btn-danger" href="'.site_url("manage/Menu/delete/".$gcmn["self"]->id).'">删除</a>
+								  <a class="btn btn-default" href="'.site_url("manage/menu/edit/".$gcmn["self"]->id."/3/".$cmn["self"]->id).'">修改</a>
+								  <a class="btn btn-danger" href="'.site_url("manage/menu/delete/".$gcmn["self"]->id).'">删除</a>
 								</div>
 							</td>
 						  </tr>';
@@ -57,4 +57,4 @@ foreach($menu as $mn){
 }
 ?>
 <hr/>
-<?php echo '<a class="btn btn-success  pull-right" href="'.site_url("manage/Menu/add/".$mn["self"]->id."/1/NULL").'">新增一级菜单</a>'; ?>
+<?php echo '<a class="btn btn-success  pull-right" href="'.site_url("manage/menu/add/".$mn["self"]->id."/1/NULL").'">新增一级菜单</a>'; ?>

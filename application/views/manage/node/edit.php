@@ -22,5 +22,5 @@
     </label>
   </div>
   <button type="submit" class="btn btn-success">确认修改</button>
-  <a class="btn btn-danger" href="<?php echo site_url('manage/Node/index'); ?>">取消操作</a>
+  <a class="btn btn-danger" href="<?php echo site_url('manage/node/index'); ?>">取消操作</a>
 </form>
