@@ -1,32 +1,40 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv='Refresh' content='<?php echo $time; ?>;URL=<?php echo $url; ?>'>
-   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="<?php echo base_url();?>static/bootstrap/css/bootstrap.min.css">
-		<link href="<?php echo base_url();?>static/signin.css" rel="stylesheet">
-        <title><?php if($type=="error")echo "错误操作";else echo "操作成功";?></title>
+<?php $this->load->view('head');?>
+
+	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><?php echo $this->config->item('project_name'); ?></a>
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+	<div class="container">
+		<div class="row" style="padding-top:100px">
 		
-  </head>
-
-  <body>
-
-    <div class="container">
-    
-    	<h1><?php echo $contents; ?></h1>
-    	<h4><span id="cnt"><?php echo $time; ?></span>秒钟后自动跳转！【<a href="<?php echo $url; ?>">立即跳转</a>】</h4>
-      
-    </div> <!-- /container -->
-	<script>
-		window.onload =function() {
-		    var i = <?php echo $time-1; ?>;
-		            setInterval(function(){                
-		                document.getElementById("cnt").innerHTML = i--;
-		 
-		            },1000);
-		        };
-	</script>
-  </body>
-</html>
+			<div class="col-sm-offset-3 col-sm-6">
+					<div class="panel panel-<?php if($type=="error")echo "danger";else echo "success";?>">
+						<div class="panel-heading"><?php if($type=="error")echo "错误操作";else echo "操作成功";?></div>
+						<div class="panel-body">
+						
+						<h1><?php echo $contents; ?></h1>
+    					<h4><span id="cnt"><?php echo $time; ?></span>秒钟后自动跳转！【<a href="<?php echo $url; ?>">立即跳转</a>】</h4>
+						<br/>
+						
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			<script>
+				window.onload =function() {
+				    var i = <?php echo $time-1; ?>;
+				            setInterval(function(){                
+				                document.getElementById("cnt").innerHTML = i--;
+				                if(document.getElementById("cnt").innerHTML=='0'){
+									window.location.href='<?php echo $url; ?>';
+					            }
+				 
+				            },1000);
+				        };
+			</script>
+<?php $this->load->view("foot");?>
