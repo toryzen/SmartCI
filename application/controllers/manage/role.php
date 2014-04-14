@@ -118,7 +118,7 @@ class Role extends CI_Controller {
 				$sql = "INSERT INTO rbac_auth (`node_id`,`role_id`) values('{$node_id}','{$id}')";
 			}
 			$this->db->query($sql);
-			error_redirct("","节点操作成功",1);
+			success_redirct("","节点操作成功",1);
 			
 		}
 		$rbac_where = "";

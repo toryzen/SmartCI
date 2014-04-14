@@ -1,5 +1,6 @@
 基于CI的RBAC访问控制
 =======
+*2014-04-14更新:修复节点授权BUG,引入Memcache
 
 框架：CI 2.1.4
 前端：bootstrap3.0

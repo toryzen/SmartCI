@@ -5,6 +5,7 @@ class Rbac {
 	 * 权限验证(Hook自动加载)
 	 */
 	public function aoto_verify(){
+		//print_r(mem_inst()->get(md5(session_id())));
 		$ci_obj = &get_instance();
 		//目录
 		$directory = substr($ci_obj->router->fetch_directory(),0,-1);
@@ -12,27 +13,29 @@ class Rbac {
 		$controller = $ci_obj->router->fetch_class();
 		//方法
 		$function = $ci_obj->router->fetch_method();
-		//echo "(".$directory."/".$controller."/".$function.")";	
+
 		if($directory!=""){//当非主目录
 			if($ci_obj->config->item('rbac_auth_on')){//开启认证
 				if(!in_array($directory,$ci_obj->config->item('rbac_notauth_dirc'))){//需要验证的目录
 					//验证是否登录
-					if(!isset($_SESSION[$ci_obj->config->item('rbac_auth_key')]["INFO"]["id"])){
+					//echo rbac_conf(array('INFO','id'));
+					if(!rbac_conf(array('INFO','id'))){
 						error_redirct($ci_obj->config->item('rbac_auth_gateway'),"请先登录！");
 						die();
 					}
 					if($ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
 						$ci_obj->load->model("rbac_model");
 						//检测用户状态
-						$STATUS = $ci_obj->rbac_model->check_user_by_id($_SESSION[$ci_obj->config->item('rbac_auth_key')]["INFO"]["id"]);
+						$STATUS = $ci_obj->rbac_model->check_user_by_id(rbac_conf(array('INFO','id')));
 						if($STATUS==FALSE){
 							error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 						}
 						//ACL重新赋权
-						$ci_obj->rbac_model->get_acl($_SESSION[$ci_obj->config->item('rbac_auth_key')]["INFO"]["role_id"]);
+						$ci_obj->rbac_model->get_acl(rbac_conf(array('INFO','role_id')));
 					}
+					
 					//验证ACL权限
-					if(@!$_SESSION[$ci_obj->config->item('rbac_auth_key')]["ACL"][$directory][$controller][$function]){
+					if(!rbac_conf(array('ACL',$directory,$controller,$function))){
 						error_redirct("","无权访问此节点！(".$directory."/".$controller."/".$function.")");
 						die();
 					}
@@ -42,11 +45,11 @@ class Rbac {
 			if($ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
 				$ci_obj->get_menu = $this->get_menu();
 			}else{
-				if(isset($_SESSION[$ci_obj->config->item('rbac_auth_key')]["MENU"])){
-					$ci_obj->get_menu = $_SESSION[$ci_obj->config->item('rbac_auth_key')]["MENU"];
+				if(rbac_conf(array('MENU'))){
+					$ci_obj->get_menu = rbac_conf(array('MENU'));
 				}else{
-					$_SESSION[$ci_obj->config->item('rbac_auth_key')]["MENU"] = $this->get_menu();
-					$ci_obj->get_menu = $_SESSION[$ci_obj->config->item('rbac_auth_key')]["MENU"];
+					rbac_conf(array('MENU'),$this->get_menu());
+					$ci_obj->get_menu = rbac_conf(array('MENU'));
 				}
 			}
 			//默认重写View开
@@ -96,22 +99,22 @@ class Rbac {
 		//按权限进行展示
 		foreach($Tmp_menu as $vo){
 			foreach($vo as $cvo){
-				if(@$_SESSION[$ci_obj->config->item('rbac_auth_key')]["ACL"][$cvo->dirc][$cvo->cont][$cvo->func]||!$cvo->node_id){
+				if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))||!$cvo->node_id){
 					if($j==0){
-						if(@$_SESSION[$ci_obj->config->item('rbac_auth_key')]["ACL"][$cvo->dirc][$cvo->cont][$cvo->func]){
+						if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))){
 							$menu[$cvo->id]["shown"] = 1;
 						}
 						$menu[$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->dirc?$cvo->dirc."/".$cvo->cont."/".$cvo->func:$cvo->cont."/".$cvo->func);
 							
 					}elseif($j==1){
-						if(@$_SESSION[$ci_obj->config->item('rbac_auth_key')]["ACL"][$cvo->dirc][$cvo->cont][$cvo->func]){
+						if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))){
 							$menu[$cvo->p_id]["shown"] = 1;
 							$menu[$cvo->p_id]["child"][$cvo->id]["shown"] = 1;
 						}
 						$menu[$cvo->p_id]["child"][$cvo->id]["self"] = array("title"=>$cvo->title,"uri"=>$cvo->dirc?$cvo->dirc."/".$cvo->cont."/".$cvo->func:$cvo->cont."/".$cvo->func);
 							
 					}else{
-						if(@$_SESSION[$ci_obj->config->item('rbac_auth_key')]["ACL"][$cvo->dirc][$cvo->cont][$cvo->func]){
+						if(rbac_conf(array('ACL',$cvo->dirc,$cvo->cont,$cvo->func))){
 							$menu[$cvo->p_p_id]["shown"] = 1;
 							$menu[$cvo->p_p_id]["child"][$cvo->p_id]["shown"] = 1;
 							$menu[$cvo->p_p_id]["child"][$cvo->p_id]["child"][$cvo->id]["shown"] = 1;

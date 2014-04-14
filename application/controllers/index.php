@@ -9,7 +9,7 @@ class Index extends CI_Controller {
 	public function index()
 	{
 		//验证是否登录
-		if(!isset($_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["id"])){
+		if(!rbac_conf(array('INFO','id'))){
 			error_redirct($this->config->item('rbac_auth_gateway'),"请先登录！");
 		}else{
 			success_redirct($this->config->item('rbac_default_index'),"您已成功登录,正在跳转请稍候！","1");
@@ -34,7 +34,7 @@ class Index extends CI_Controller {
 			}
 			
 		}else{
-			session_destroy();
+			//session_destroy();
 			$this->load->view("login");
 		}
 		

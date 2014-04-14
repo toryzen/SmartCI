@@ -10,16 +10,12 @@ class Rbac_model extends CI_Model{
 	 * 获取权限列表
 	*/
 	public function get_acl($role_id){
-		//$query = $this->db->query("SELECT role_id FROM `rbac_role_user` WHERE user_id = ".$userid." LIMIT 1");
-		//$data = $query->row_array();
-		//if($data['role_id']>0){
 		$query = $this->db->query("SELECT id,dirc,cont,func FROM `rbac_node` WHERE id in (SELECT node_id FROM `rbac_auth` WHERE role_id = ".$role_id.")");
 		$role_data = $query->result();
 		foreach($role_data as $vo){
 			$Tmp_role[$vo->dirc][$vo->cont][$vo->func] = TRUE;
 		}
-		$_SESSION[$this->config->item('rbac_auth_key')]["ACL"] = $Tmp_role;
-		//}
+		rbac_conf(array('ACL'),$Tmp_role);
 	}
 	
 	/*
@@ -31,10 +27,10 @@ class Rbac_model extends CI_Model{
 		if($data){
 			if($data['status']==1){
 				if($data['password']==$password){
-					$_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["id"]      = $data['id'];
-					$_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["role_id"] = $data['role_id'];
-					$_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["email"]   = $data['email'];
-					$_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["nickname"] = $data['nickname'];
+					rbac_conf(array('INFO','id'),$data['id']);
+					rbac_conf(array('INFO','role_id'),$data['role_id']);
+					rbac_conf(array('INFO','email'),$data['email']);
+					rbac_conf(array('INFO','nickname'),$data['nickname']);
 					$this->get_acl($data['role_id']);
 					return TRUE;
 				}
@@ -57,10 +53,10 @@ class Rbac_model extends CI_Model{
 		$data = $query->row_array();
 		if($data){
 			if($data['status']==1){
-				$_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["id"] = $data['id'];
-				$_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["role_id"] = $data['role_id'];
-				$_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["email"] = $data['email'];
-				$_SESSION[$this->config->item('rbac_auth_key')]["INFO"]["nickname"] = $data['nickname'];
+				rbac_conf(array('INFO','id'),$data['id']);
+				rbac_conf(array('INFO','role_id'),$data['role_id']);
+				rbac_conf(array('INFO','email'),$data['email']);
+				rbac_conf(array('INFO','nickname'),$data['nickname']);
 				$this->get_acl($data['role_id']);
 				return TRUE;
 			}else{

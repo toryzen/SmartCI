@@ -13,23 +13,20 @@
 		
 			<div class="col-sm-offset-4 col-sm-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading">登录</div>
+						<div class="panel-heading">用户登录</div>
 						<div class="panel-body">
 						
 						<form class="form-horizontal" role="form"  action="" method="post">
-							<div class="form-group">
-								<label for="inputUsername" class="col-sm-2 control-label"></label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="inputUsername" placeholder="请输入用户名" name="username" >
-								</div>
-								<!-- <div class="col-sm-3"></div> -->
+							<div class="input-group">
+							  <span class="input-group-addon">用户</span>
+							  <input type="text" class="form-control" placeholder="请输入用户" name="username">
 							</div>
-							<div class="form-group">
-								<label for="inputPasswd" class="col-sm-2 control-label"></label>
-								<div class="col-sm-8">
-									<input type="password" class="form-control" id="inputPasswd" placeholder="请输入密码" name="password" >
-								</div>
+							<br/>
+							<div class="input-group">
+							  <span class="input-group-addon">密码</span>
+							  <input type="password" class="form-control" placeholder="请输入密码" name="password">
 							</div>
+							<br/>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-8">
 									<input type="hidden" name="foward" value="null"/>
@@ -39,6 +36,7 @@
 							</form>
 						</div>
 					</div>
+					<div class="alert alert-success">测试用帐号（用户:admin 密码:admin）</div>
 					</div>
 				</div>
 			</div>
