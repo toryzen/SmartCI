@@ -9,13 +9,12 @@
 |	http://codeigniter.com/user_guide/general/memcached.html
 |
 */
-//$config['flag'] = TRUE;
+//是否开启
+$config['flag'] = FALSE;
 //memcached权限验证
 $config['config'] = array(
                'servers' => array('192.168.4.37:11211'),
-               'debug'   => false,
-               'compress_threshold' => 10240,
-               'persistant' => true
+               'debug'   => false
              );
 
 /* End of file memcached.php */
