@@ -1,12 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * CI RBAC
+ * RBAC后台管理中节点模块
+ * @author		toryzen
+ * @link		http://www.toryzen.com
+ */
 class Node extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
-
+	/**
+	 * 节点首页
+	 */
 	public function index()
 	{
 		$rbac_where = "";
@@ -25,7 +32,12 @@ class Node extends CI_Controller {
 		}
 		$this->load->view('manage/node',array('node'=>$node_list));
 	}
-	
+	/**
+	 * 新增节点
+	 * @param string $dirc
+	 * @param string $cont
+	 * @param string $func
+	 */
 	public function add($dirc=NULL,$cont=NULL,$func=NULL){
 		if($this->input->post()){
 			$dirc = $this->input->post("dirc")?$this->input->post("dirc"):$dirc;
@@ -50,7 +62,12 @@ class Node extends CI_Controller {
 		}
 		$this->load->view('manage/node/add',array('dirc'=>$dirc,'cont'=>$cont,'func'=>$func));
 	}
-	
+	/**
+	 * 删除节点
+	 * @param string $dirc
+	 * @param string $cont
+	 * @param string $func
+	 */
 	public function delete($dirc=NULL,$cont=NULL,$func=NULL){
 		if($dirc==NULL){error_redirct("manage/node/index","操作失败");}
 		if($this->input->post()){
@@ -73,7 +90,10 @@ class Node extends CI_Controller {
 		}
 		$this->load->view('manage/node/delete',array('dirc'=>$dirc,'cont'=>$cont,'func'=>$func));
 	}
-	
+	/**
+	 * 修改节点
+	 * @param unknown $id
+	 */
 	public function edit($id){
 		$query = $this->db->query("SELECT * FROM rbac_node WHERE id = ".$id);
 		$data = $query->row_array();

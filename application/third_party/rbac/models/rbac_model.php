@@ -1,4 +1,10 @@
 <?php 
+/**
+ * CI RBAC
+ * 模型
+ * @author		toryzen
+ * @link		http://www.toryzen.com
+ */
 class Rbac_model extends CI_Model{
 	
 	public function __construct(){

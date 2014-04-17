@@ -1,12 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * CI RBAC
+ * RBAC后台管理中角色模块
+ * @author		toryzen
+ * @link		http://www.toryzen.com
+ */
 class Role extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
-
+	/**
+	 * 角色首页
+	 * @param number $page
+	 */
 	public function index($page=1)
 	{
 		$query = $this->db->query("SELECT COUNT(1) as cnt FROM rbac_role");

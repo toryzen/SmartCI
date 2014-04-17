@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * CI RBAC
+ * RBAC中用到的公共函数
+ * @author		toryzen
+ * @link		http://www.toryzen.com
+ */
 //MEMCACHED唯一ID
 if(!function_exists('mem_id')){
 	function mem_id(){
@@ -34,7 +39,6 @@ if(!function_exists('rbac_conf')){
 		}else{
 			$config = @$_SESSION[$ci_obj->config->item('rbac_auth_key')];
 		}
-		//print_r($config);
 		$conf[-1] = &$config;
 		foreach($arr_key as $k=>$ar){
 			$conf[$k] = &$conf[$k-1][$ar];
@@ -44,9 +48,7 @@ if(!function_exists('rbac_conf')){
 		}
 		//设置
 		if(mem_inst()){
-			//print_r(mem_inst()->set(mem_id(),$config)."-");
 			if(!mem_inst()->set(mem_id(),$config)){
-				//echo "nonno";
 				$_SESSION[$ci_obj->config->item('rbac_auth_key')] = $config;
 			}
 		}else{

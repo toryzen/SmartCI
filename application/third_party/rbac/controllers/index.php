@@ -1,11 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * CI RBAC
+ * RBAC中默认网关页面
+ * @author		toryzen
+ * @link		http://www.toryzen.com
+ */
 class Index extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
 	}
-
+	/**
+	 * 主页
+	 */
 	public function index()
 	{
 		
@@ -17,7 +24,7 @@ class Index extends CI_Controller {
 		}
 		
 	}
-	/*
+	/**
 	 * 用户登录
 	 */
 	public function login(){
@@ -29,14 +36,11 @@ class Index extends CI_Controller {
 			$STATUS = $this->rbac_model->check_user($username,md5($password));
 			if($STATUS===TRUE){
 				success_redirct($this->config->item('rbac_default_index'),"登录成功！");
-				//die();
 			}else{
 				error_redirct($this->config->item('rbac_auth_gateway'),$STATUS);
 				die();
 			}
-			
 		}else{
-			//session_destroy();
 			$this->load->view("login");
 		}
 		

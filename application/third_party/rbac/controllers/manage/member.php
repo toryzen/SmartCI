@@ -1,5 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * CI RBAC
+ * RBAC管理后台中用户模块
+ * @author		toryzen
+ * @link		http://www.toryzen.com
+ */
 class Member extends CI_Controller {
 	
 	function __construct(){
@@ -51,7 +56,6 @@ class Member extends CI_Controller {
 							if($status){$newstat = ",status='1'";}else{$newstat = ",status='0'";}
 							if($role){$newrole = ",role_id={$role}";}else{$newrole = ",role_id=NULL";}
 							$sql = "UPDATE rbac_user set `nickname`='{$nickname}',`email`='{$email}' {$newpass} {$newstat} {$newrole} WHERE id = {$id}";
-							//echo $sql;die();
 							$this->db->query($sql);
 							success_redirct("manage/member/index","用户信息修改成功！");
 						}else{
@@ -85,7 +89,6 @@ class Member extends CI_Controller {
 			$password2 = md5($this->input->post("password2"));
 			if($password==$password2){
 				if($username&&$nickname&&$email&&$password2){
-					
 					$query = $this->db->query("SELECT * FROM rbac_user WHERE username = '".$username."'");
 					$data = $query->row_array();
 					if(!$data){
@@ -94,7 +97,6 @@ class Member extends CI_Controller {
 						if(!$data){
 							if(!$status){$newstat = "0";}else{$newstat = "1";}
 							$sql = "INSERT INTO rbac_user (`username`,`nickname`,`email`,`password`,`role_id`,`status`) values('{$username}','{$nickname}','{$email}' ,'{$password2}','{$role}', '{$status}')";
-							//echo $sql;die();
 							$this->db->query($sql);
 							success_redirct("manage/member/index","用户新增成功！");
 						}else{
@@ -130,7 +132,6 @@ class Member extends CI_Controller {
 				}else{
 					error_redirct("manage/member/index","操作失败");
 				}
-				
 			}
 			$this->load->view("manage/member/delete",array("data"=>$data));
 		}else{
