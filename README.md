@@ -5,43 +5,35 @@
 前端：bootstrap3.0
 模型：RBAC0（甚至更简单）
 
-1、RBAC基本配置，application/config/rbac.php
-<pre>
-$config['rbac_auth_on']              = TRUE;                //是否开启认证
-$config['rbac_auth_type']            = '2';                 //认证方式1,登录认证;2,实时认证
-$config['rbac_auth_key']             = 'MyAuth';            //SESSION标记
-$config['rbac_auth_gateway']         = 'Index/login';       //默认认证网关
-$config['rbac_default_index']        = 'manage/Role/index'; //成功登录默认跳转模块
-$config['rbac_manage_menu_hidden']   = array('后台管理');   //后台管理导航中不显示的菜单
-$config['rbac_manage_node_hidden']   = array('manage');     //后台管理节点中不显示的菜单
-$config['rbac_notauth_dirc']         = array('');           //默认无需认证目录array("public","manage")
-</pre>
+1、在CI基础上增加的文件：
+application->config->rbac.php
+RBAC的基础配置文件,可以设置是否开启,默认网关,无需认证等等(详见文件中备注)
 
-2、钩子 application/config/hooks.php
-<pre>
-$hook['post_controller_constructor'] = array(
-        'class'    => 'Rbac',
-        'function' => 'aoto_verify',
-        'filename' => 'rbac_hook.php',
-        'filepath' => 'hooks',
-        'params'   => '',
-);
-$hook['display_override'] = array(
-        'class'    => 'Rbac',
-        'function' => 'view_override',
-        'filename' => 'rbac_hook.php',
-        'filepath' => 'hooks',
-        'params'   => '',
-);
- 
-$hook['pre_system'] = array(
-        'class'    => '',
-        'function' => 'session_start',
-        'filename' => '',
-        'filepath' => '',
-        'params'   => '',
-);
-</pre>
+application->config->project.php
+项目配置的基本文件，设置项目名称，底部版权等
+
+application->config->memcached.php
+Memcache配置文件，本系统内部Memcache不依赖于PHP扩展
+
+application->controllers->manage[目录]
+此目录为RBAC的后端管理(不实现方法，只是简单调用,只是简单调用third_party下文件)
+
+application->controllers->index.php
+RBAC登录,用户主页(不实现方法,只是简单调用third_party下文件)
+
+application->third_party[目录]
+这里面就是整体的RBAC实现了,如果有更新,基本上只更新此目录即可[除非有特殊声明更新其他文件]
+
+2、在CI上增加的设置
+Autoload:
+    packages    APPPATH.'third_party/rbac'
+    helper      'rbac','url'
+    config      'rbac','project'
+    
+Hooks:
+    post_controller_constructor     RBAC验证
+    display_override                重写显示(注意:默认重写view,如果不想重新在方法中调用$this->view_override = FALSE;)
+    pre_system                      开启原生SESSION
 
 * 2014-04-17更新:大更新，整体目录结构变化，目的是为了让RBAC的管理与控制与CI中的各目录隔离,现在基于CI的特性做了部分处理,还有些暂未能隔离，再想办法。V1.5<br/\>
 * 2014-04-14更新:修复节点授权BUG,引入Memcache<br/\>
