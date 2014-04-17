@@ -41,7 +41,7 @@ Autoload:
 <pre>
 Hooks:
     post_controller_constructor     RBAC验证
-    display_override                重写显示(注意:默认重写view,如果不想重新在方法中调用$this->view_override = FALSE;)
+    display_override                重写显示(注意:默认重写view,如果不想重写则在方法中调用$this->view_override = FALSE;)
     pre_system                      开启原生SESSION
 </pre>
 
