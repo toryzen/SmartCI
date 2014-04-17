@@ -5,7 +5,7 @@
 前端：bootstrap3.0
 模型：RBAC0（甚至更简单）
 
-<h3>在CI基础上增加的文件</h3>
+<h3>在CI上增加的文件</h3>
 <pre>
     application->config->rbac.php
     RBAC的基础配置文件,可以设置是否开启,默认网关,无需认证等等(详见文件中备注)
@@ -31,7 +31,7 @@
     这里面就是整体的RBAC实现了,如果有更新,基本上只更新此目录即可[除非有特殊声明更新其他文件]
 </pre>
 
-<h3>在CI上增加的设置</h3>
+<h3>在CI上配置的设置</h3>
 <pre>
 Autoload:
     packages    APPPATH.'third_party/rbac'
