@@ -6,23 +6,35 @@
 模型：RBAC0（甚至更简单）
 
 <h3>在CI基础上增加的文件</h3>
+<pre>
     application->config->rbac.php
     RBAC的基础配置文件,可以设置是否开启,默认网关,无需认证等等(详见文件中备注)
+</pre>
 <br/>
+<pre>
     application->config->project.php
     项目配置的基本文件，设置项目名称，底部版权等
+</pre>
 <br/>
+<pre>
     application->config->memcached.php
     Memcache配置文件，本系统内部Memcache不依赖于PHP扩展
+</pre>
 <br/>
+<pre>
     application->controllers->manage[目录]
     此目录为RBAC的后端管理(不实现方法，只是简单调用,只是简单调用third_party下文件)
+</pre>
 <br/>
+<pre>
     application->controllers->index.php
     RBAC登录,用户主页(不实现方法,只是简单调用third_party下文件)
+</pre>
 <br/>
+<pre>
     application->third_party[目录]
     这里面就是整体的RBAC实现了,如果有更新,基本上只更新此目录即可[除非有特殊声明更新其他文件]
+</pre>
 
 <h3>在CI上增加的设置</h3>
 <pre>
