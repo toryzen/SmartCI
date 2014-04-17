@@ -14,7 +14,7 @@ $hook['post_controller_constructor'] = array(
 		'class'    => 'Rbac',
 		'function' => 'aoto_verify',
 		'filename' => 'rbac_hook.php',
-		'filepath' => 'hooks',
+		'filepath' => 'third_party/rbac/hooks',
 		'params'   => '',
 );
 
@@ -22,7 +22,7 @@ $hook['display_override'] = array(
 		'class'    => 'Rbac',
 		'function' => 'view_override',
 		'filename' => 'rbac_hook.php',
-		'filepath' => 'hooks',
+		'filepath' => 'third_party/rbac/hooks',
 		'params'   => '',
 );
 

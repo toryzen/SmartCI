@@ -37,7 +37,7 @@
 |
 */
 
-$autoload['packages'] = array();
+$autoload['packages'] = array(APPPATH.'third_party/rbac');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('memcached');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','rbac');
+$autoload['helper'] = array('rbac','url');
 
 
 /*
