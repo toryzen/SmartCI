@@ -13,7 +13,7 @@ if(!function_exists('mem_inst')){
 		$ci_obj = &get_instance();
 		$ci_obj->config->load('memcached',TRUE);
 		if($ci_obj->config->item('flag','memcached')===FALSE) return FALSE;
-		$ci_obj->load->libray('memcached');
+		$ci_obj->load->library('memcached');
 		static $static_memc;
 		if($static_memc)return $static_memc;
 		$memc = new memcached($ci_obj->config->item('config','memcached'));

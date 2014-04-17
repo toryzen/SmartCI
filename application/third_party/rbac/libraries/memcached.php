@@ -403,7 +403,7 @@ class Memcached
       if (!is_resource($sock))
          return false;
          
-      $this->stats['get']++;
+      @$this->stats['get']++;
       
       $cmd = "get $key\r\n";
       if (!fwrite($sock, $cmd, strlen($cmd)))
@@ -842,7 +842,7 @@ class Memcached
                   break;
                $offset += $n;
                $bneed -= $n;
-               $ret[$rkey] .= $data;
+               @$ret[$rkey] .= $data;
             }
             
             if ($offset != $len+2)
@@ -895,7 +895,7 @@ class Memcached
       if (!is_resource($sock))
          return false;
          
-      $this->stats[$cmd]++;
+      @$this->stats[$cmd]++;
       
       $flags = 0;
       
