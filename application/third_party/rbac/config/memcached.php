@@ -1,12 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
-| Hooks
+| Memcached
 | -------------------------------------------------------------------------
-| This file lets you define "memcached" to extend CI without hacking the core
-| files.  Please see the user guide for info:
-|
-|	http://codeigniter.com/user_guide/general/memcached.html
 |
 */
 //是否开启
@@ -18,4 +14,4 @@ $config['config'] = array(
              );
 
 /* End of file memcached.php */
-/* Location: ./application/config/memcached.php */
+/* Location: ./application/third_party/rbac/config/memcached.php */

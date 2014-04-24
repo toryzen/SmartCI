@@ -15,7 +15,6 @@ class Index extends CI_Controller {
 	 */
 	public function index()
 	{
-		
 		//验证是否登录
 		if(!rbac_conf(array('INFO','id'))){
 			error_redirct($this->config->item('rbac_auth_gateway'),"请先登录！");

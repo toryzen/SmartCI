@@ -17,4 +17,4 @@ $config['rbac_notauth_dirc']         = array('');	     	    //默认无需认证
 
 
 /* End of file rbac.php */
-/* Location: ./application/config/rbac.php */
+/* Location: ./application/third_party/rbac/config/rbac.php */

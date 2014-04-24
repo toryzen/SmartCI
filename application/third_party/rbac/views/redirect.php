@@ -1,13 +1,5 @@
 <?php $this->load->view('head');?>
 
-	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#"><?php echo $this->config->item('project_name'); ?></a>
-        </div>
-      </div><!-- /.container -->
-    </div><!-- /.navbar -->
-
 	<div class="container">
 		<div class="row" style="padding-top:100px">
 		

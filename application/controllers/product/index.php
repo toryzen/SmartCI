@@ -8,7 +8,12 @@ class Index extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view("product/index");
+		//取消重写VIEW
+		//$this->view_override = FALSE;
+		$header = array(
+			'header_title'=>'测试系统页面'
+		);
+		$this->load->view("product/index",$header);
 	}
 
 }
